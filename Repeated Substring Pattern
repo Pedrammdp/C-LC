@@ -1,0 +1,43 @@
+#include <unordered_map>
+
+
+class Solution {
+public:
+    bool repeatedSubstringPattern(string s)
+    {
+        unordered_map<char, int> charCountMap;
+        if (s.size() == 1){
+            return false;
+        }
+        for (auto c : s)
+        {
+            charCountMap[c]++;
+        }
+        bool allCountsEqual = true;
+        int FirstCount = 0;
+        for (auto it : charCountMap)
+        {
+            int count = it.second;
+            int n = s.length();
+
+            if (n % count == 0) 
+            {
+                int patternLen = n / count;
+                string pattern = s.substr(0, patternLen);
+                string constructed = "";
+
+                // Construct the string using the pattern
+                for (int i = 0; i < count; i++) {
+                    constructed += pattern;
+                }
+
+                // If the constructed string matches the original string, return true
+                if (constructed == s) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+};
