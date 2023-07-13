@@ -1,0 +1,72 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        
+        if (digits.empty()) {
+            return digits; // Return the same empty vector
+        }
+        
+        // Remove any leading zeros
+        while (!digits.empty() && digits[0] == 0) {
+            digits.erase(digits.begin());
+        }
+        
+        size_t result = 0;
+        for (int i = 0; i < digits.size(); i++)
+        {
+            result = result * 10 + digits[i];
+        }
+        result++;
+
+        vector<int> v;
+
+        while(result!=0){
+            v.push_back(result%10);
+            result /= 10;
+        }
+        reverse(v.begin(), v.end());
+        return v;
+        
+    }
+};
+
+int main() {
+    Solution solution;
+
+    // Test case 1: Non-empty vector
+    std::vector<int> digits1 = {1, 2, 3};
+    std::vector<int> result1 = solution.plusOne(digits1);
+
+    std::cout << "Result 1: ";
+    for (int digit : result1) {
+        std::cout << digit << " ";
+    }
+    std::cout << std::endl;
+
+    // Test case 2: Empty vector
+    std::vector<int> digits2 = {9};
+    std::vector<int> result2 = solution.plusOne(digits2);
+
+    std::cout << "Result 2: ";
+    for (int digit : result2) {
+        std::cout << digit << " ";
+    }
+    std::cout << std::endl;
+
+    // Test case 3: Vector with leading zeros
+    std::vector<int> digits3 = {7,2,8,5,0,9,1,2,9,5,3,6,6,7,3,2,8,4,3,7,9,5,7,7,4,7,4,9,4,7,0,1,1,1,7,4,0,0,6};
+    std::vector<int> result3 = solution.plusOne(digits3);
+
+    std::cout << "Result 3: ";
+    for (int digit : result3) {
+        std::cout << digit << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
