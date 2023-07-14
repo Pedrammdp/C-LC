@@ -1,0 +1,30 @@
+#include <string>
+#include <unordered_map>
+class Solution {
+public:
+    int romanToInt(string s) {
+        
+        std::unordered_map<char,int> nv;
+        nv['I'] = 1;
+        nv['V'] = 5;
+        nv['X'] = 10;
+        nv['L'] = 50;
+        nv['C'] = 100;
+        nv['D'] = 500;
+        nv['M'] = 1000;
+
+        int ans = 0;
+        
+        for(int i = 0; i <  s.length(); i++)
+        {
+            if(nv[s[i]] < nv[s[i+1]]){
+                ans -= nv[s[i]];
+            }
+            else{
+                ans += nv[s[i]];
+            }
+        }
+        return ans;
+
+    }
+};
