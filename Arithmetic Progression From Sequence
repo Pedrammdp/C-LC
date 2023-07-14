@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool canMakeArithmeticProgression(vector<int>& arr) {
+        sort(arr.begin(), arr.end());
+        bool flag = true;
+        int difference = abs(arr[1] - arr[0]);
+        int n = arr.size();
+        for(int i=2;i<n;i++)
+        {
+            if(abs(arr[i] - arr[i-1]) != difference){
+                    flag = false;
+                    break;
+                }
+        }
+        return flag;
+    }
+};
+
+int main(){
+    Arithmetic A;
+    vector<int> vec = {3,5,1};
+    cout << A.canMakeArithmeticProgression(vec) << endl;
+
+    vector<int> vec1 = {1,2,4};
+    cout << A.canMakeArithmeticProgression(vec1);
+}
