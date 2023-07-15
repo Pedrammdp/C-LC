@@ -1,0 +1,10 @@
+class Solution {
+public:
+    bool judgeCircle(string moves) {
+        unordered_map<char, int> CharCount;
+        for (auto c : moves){
+            CharCount[c]++;
+        }
+        return (CharCount['L'] == CharCount['R']) && (CharCount['U'] == CharCount['D']);
+    }
+};
