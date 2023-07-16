@@ -1,0 +1,35 @@
+class Solution{
+public:
+    string tictactoe(vector<vector<int>>& moves){
+        vector<vector<char>> grid(3, vector<char> (3, ' '));
+
+        char currentPlayer = 'A';
+
+        for (auto move : moves){
+            int row = move[0];
+            int col = move[1];
+
+            // Updating the board
+            grid[row][col] = currentPlayer;
+            
+            if ((grid[row][0] == currentPlayer && grid[row][1] == currentPlayer && grid[row][2] == currentPlayer) ||
+                (grid[0][col] == currentPlayer && grid[1][col] == currentPlayer && grid[2][col] == currentPlayer) ||
+                (grid[0][0] == currentPlayer && grid[1][1] == currentPlayer && grid[2][2] == currentPlayer) ||
+                (grid[0][2] == currentPlayer && grid[1][1] == currentPlayer && grid[2][0] == currentPlayer)) {
+                    return string(1, currentPlayer);
+            }
+
+            // Switch Players
+            currentPlayer = (currentPlayer == 'A') ? 'B' : 'A';
+
+
+        }
+
+        if (moves.size() == 9) {
+            return "Draw";
+        } else{
+            return "Pending";
+        }
+    }
+
+};
